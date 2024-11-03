@@ -3,7 +3,7 @@
     --color-back-light: #ECEFF1;
     --color-back-dark: #37474f;
     --spacer-base: 1em;
-    --card-font-size: 90%;
+    --card-font-size: 100%;
     --header-font-size: 32px;
     --header-height: 8em;
 }
@@ -39,11 +39,35 @@ button {
     border-radius: 0.25rem;
     cursor: pointer;
 }
+header {
+    display: flex;
+    justify-content: space-between; /* Spaces h1 and img to the left and right edges */
+    align-items: center; /* Vertically aligns items in the header */
+    padding: 0 var(--spacer-base);
+    background-color: var(--color-back-dark);
+    height: var(--header-height);
+}
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Giúp các card tự động xuống hàng nếu không đủ chỗ */
+    justify-content: space-between; /* Tạo khoảng cách đều giữa các card */
+    gap: 1em; /* Khoảng cách giữa các card */
+}
+
 .card {
-	background: white;
-	margin-bottom: 2em;	
+    width: 24%; /* Độ rộng cho 4 card trên 1 hàng */
+    background: white;
+    padding: 1em;
+    margin-bottom: 1em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 0.25rem;
+}
+
+.card {
+    background: white;
+    margin-bottom: 2em;
     padding: 0;
-   
+    width: 24%;
 }
 .card-content p {
 	padding: 0.5em 1.4em 0 1.4em;
@@ -53,26 +77,14 @@ button {
 	padding: 0.5em 1.4em;
 	font-size: var(--card-font-size);      
 }
-.card {
-    background: white;
-    margin-bottom: 2em;
-    padding: 0;
-    width: 24%;
-}
+
 .card img {
     max-width: 100%; /* Ensures images do not overflow the card */
     height: auto; /* Maintains aspect ratio */
 }
 
 /* add your styles here */
-header {
-    display: flex;
-    justify-content: space-between; /* Spaces h1 and img to the left and right edges */
-    align-items: center; /* Vertically aligns items in the header */
-    padding: 0 var(--spacer-base);
-    background-color: var(--color-back-dark);
-    height: var(--header-height);
-}
+
 
 /* styles for mobile protrait screen */
 .card {
