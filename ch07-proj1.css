@@ -39,35 +39,33 @@ button {
     border-radius: 0.25rem;
     cursor: pointer;
 }
+
 header {
     display: flex;
-    justify-content: space-between; /* Spaces h1 and img to the left and right edges */
     align-items: center; /* Vertically aligns items in the header */
+    justify-content: space-between; /* Spaces h1 and img to the left and right edges */
     padding: 0 var(--spacer-base);
     background-color: var(--color-back-dark);
     height: var(--header-height);
 }
 .container {
     display: flex;
-    flex-wrap: wrap; /* Giúp các card tự động xuống hàng nếu không đủ chỗ */
-    justify-content: space-between; /* Tạo khoảng cách đều giữa các card */
-    gap: 1em; /* Khoảng cách giữa các card */
-}
-
-.card {
-    width: 24%; /* Độ rộng cho 4 card trên 1 hàng */
-    background: white;
+    flex-wrap: wrap; /* Cho phép các thẻ xuống dòng nếu hết không gian */
+    align-items: center;
+    justify-content: space-between; /* Điều chỉnh để các thẻ dàn đều */
+    gap: 1em; /* Khoảng cách giữa các thẻ */
     padding: 1em;
-    margin-bottom: 1em;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 0.25rem;
 }
 
 .card {
+    flex: 1 1 24%; /* Cho phép các thẻ giãn ra theo chiều rộng có sẵn, tối thiểu chiếm 24% */
+    max-width: 24%; /* Đảm bảo các thẻ không vượt quá 24% chiều rộng container */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     background: white;
-    margin-bottom: 2em;
+    margin-bottom: 0;
     padding: 0;
-    width: 24%;
 }
 .card-content p {
 	padding: 0.5em 1.4em 0 1.4em;
@@ -87,30 +85,23 @@ header {
 
 
 /* styles for mobile protrait screen */
-.card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Spaces items within the card */
-}
-
-
-/* styles for tablet portrait and mobile landscape screens */
 .card img:hover {
     filter: saturate(150%); /* Increases saturation on hover */
 }
 
 .card:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Adds shadow on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* thêm bóng mờ */
 }
 
 button {
     opacity: 0; /* Initial opacity is 0 */
-    transition: opacity 1s; /* Fades in over 1 second */
+    transition: opacity 1s; /* mờ 1s */
 }
 
 .card:hover button {
-    opacity: 1; /* Fully opaque when hovering over the card */
-}
+    opacity: 1;} /* Fully opaque when hovering over the card */
+/* styles for tablet portrait and mobile landscape screens */
+
 /* Mobile screens (below 480px) */
 @media (max-width: 480px) {
     :root {
@@ -120,7 +111,7 @@ button {
     }
 
     .card {
-        width: 100%; /* Full width for mobile */
+        width: 100%; /* 1 thẻ mobile */
     }
 }
 
@@ -132,6 +123,6 @@ button {
     }
 
     .card {
-        width: 45%; /* Two cards per row on tablet */
+        width: 45%; /* 2 thẻ per tablet */
     }
 }
