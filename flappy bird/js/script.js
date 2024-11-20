@@ -137,3 +137,15 @@ $(function () {
         }
     }
 });
+function changeBirdType(type) {
+    const bird = document.getElementById('bird');
+    bird.className = ''; // Xóa các lớp cũ
+    bird.classList.add(`bird-type-${type}`); // Thêm lớp mới
+}
+function changePoleType(type) {
+    const poles = document.querySelectorAll('.pole');
+    poles.forEach(pole => {
+        pole.className = 'pole'; // Xóa các lớp cũ, giữ lại lớp cơ bản
+        pole.classList.add(`pole-type-${type}`); // Thêm lớp mới
+    });
+}
