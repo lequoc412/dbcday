@@ -149,3 +149,71 @@ function changePoleType(type) {
         pole.classList.add(`pole-type-${type}`); // Thêm lớp mới
     });
 }
+let level = 1;
+let interval = 40; // Bắt đầu từ Level 1
+let score = 0; // Biến theo dõi điểm
+let gameInterval; // Để lưu trữ setInterval hiện tại
+function updateLevel() {
+    const levelElement = document.getElementById('level');
+    if (score >= 50) {
+        clearInterval(gameInterval);
+        alert("Chúc mừng bạn đã chiến thắng!");
+        return;
+    }
+
+    if (score >= 40) {
+        level = 4;
+        interval = 20;
+    } else if (score >= 20) {
+        level = 3;
+        interval = 25;
+    } else if (score >= 5) {
+        level = 2;
+        interval = 30;
+    } else {
+        level = 1;
+        interval = 40;
+    }
+
+    levelElement.textContent = `Level: ${level}`;
+    restartGameInterval();
+}
+function updateScore(newScore) {
+    score = newScore;
+    const scoreElement = document.getElementById('score');
+    scoreElement.textContent = score;
+
+    updateLevel();
+}
+function restartGameInterval() {
+    clearInterval(gameInterval); // Xóa interval cũ
+    gameInterval = setInterval(() => {
+        // Logic game (di chuyển ống khói, chim, tính toán va chạm)
+        movePoles();
+    }, interval);
+}
+document.getElementById('play_btn').addEventListener('click', () => {
+    score = 0;
+    level = 1;
+    interval = 40;
+    updateScore(0);
+    updateLevel();
+    restartGameInterval();
+});
+
+document.getElementById('restart_btn').addEventListener('click', () => {
+    score = 0;
+    level = 1;
+    interval = 40;
+    updateScore(0);
+    updateLevel();
+    restartGameInterval();
+});
+function checkGameEnd() {
+    if (score >= 50) {
+        clearInterval(gameInterval);
+        alert("Chúc mừng bạn đã chiến thắng!");
+    }
+}
+updateScore(score + 1);
+checkGameEnd();
