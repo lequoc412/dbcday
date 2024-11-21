@@ -155,7 +155,7 @@ let score = 0; // Biến theo dõi điểm
 let gameInterval; // Để lưu trữ setInterval hiện tại
 function updateLevel() {
     const levelElement = document.getElementById('level');
-    if (score >= 50) {
+    if (score >= 2) {
         clearInterval(gameInterval);
         alert("Chúc mừng bạn đã chiến thắng!");
         return;
@@ -217,3 +217,23 @@ function checkGameEnd() {
 }
 updateScore(score + 1);
 checkGameEnd();
+// Lấy đối tượng con chim
+const bird = document.getElementById('bird');
+
+// Tăng tốc độ rơi hoặc nhảy khi nhấn phím Arrow Down hoặc click chuột
+function moveBirdDown() {
+    let currentTop = parseInt(window.getComputedStyle(bird).getPropertyValue('top'));
+    if (currentTop < document.getElementById('container').offsetHeight - bird.offsetHeight) {
+        bird.style.top = `${currentTop + 50}px`; // Tăng tọa độ top
+    }
+}
+
+// Sự kiện chuột xuống
+document.addEventListener('mousedown', moveBirdDown);
+
+// Sự kiện nhấn phím Arrow Down
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowDown') {
+        moveBirdDown();
+    }
+});
